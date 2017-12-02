@@ -1,3 +1,5 @@
 class BestsellingBooks::CLI
-  puts "Hello"
+  def call
+    puts "Hello"
+  end
 end
