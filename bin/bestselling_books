@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "daily_deal"
+
+BestsellingBooks::CLI.new.call

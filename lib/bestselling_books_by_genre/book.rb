@@ -1,0 +1,3 @@
+class BestsellingBooks::Book
+
+end
