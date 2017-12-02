@@ -1,3 +1,3 @@
-class BestsellingBooks::Book
+class BestsellingBooksByGenre::Book
 
 end
