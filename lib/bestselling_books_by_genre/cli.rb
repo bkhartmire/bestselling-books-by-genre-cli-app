@@ -22,6 +22,7 @@ class BestsellingBooksByGenre::CLI
   def list_books
     separate_genre_arrays.each.with_index(1) do |book, i|
       puts "#{i}. #{book.title} by #{book.author}"
+    end
   end
 
   def get_details
@@ -39,5 +40,4 @@ class BestsellingBooksByGenre::CLI
       get_details
     end
   end
-  
 end
