@@ -3,6 +3,16 @@ require 'pry'
 class BestsellingBooksByGenre::Book
   attr_accessor :genre, :title, :author, :summary, :link_to_buy
 
+  def self.fiction_bestsellers
+    @fiction_books = []
+    @fiction_books << self.scrape_fiction
+  end
+
+  def nonfiction_bestsellers
+    @nonfiction_books = []
+    @nonfiction_books << self.scrape_nonfiction
+  end
+
   def self.scrape_fiction
     doc = Nokogiri::HTML(open("https://www.nytimes.com/books/best-sellers/"))
     book = self.new
