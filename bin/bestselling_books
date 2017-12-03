@@ -3,4 +3,4 @@
 require "bundler/setup"
 require "bestselling_books_by_genre"
 
-BestsellingBooksByGenre::Book.scrape_nytimes
+BestsellingBooksByGenre::CLI.new.call

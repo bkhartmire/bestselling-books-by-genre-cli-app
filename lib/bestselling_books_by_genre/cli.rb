@@ -1,16 +1,22 @@
 class BestsellingBooksByGenre::CLI
   def call
-    puts "Hello"
+    list_books
+    get_details
+  end
+
+  def genre
+    puts "Would you like to view the NY Times top 5 bestselling fiction or nonfiction books?"
+    genre = gets.strip
   end
 
   def list_books
-    puts "Would you like to view the NY Times top 5 bestselling fiction or nonfiction books?"
-    @@genre = gets.strip
-    if @@genre == "fiction"
+    if genre == "fiction"
+      @fiction_books = BestsellingBooksByGenre::Book.scrape_fiction
       @fiction_books.each.with_index(1) do |book, i|
         puts "#{i}. #{book.title} by #{book.author}"
       end
-    elsif @@genre == "nonfiction"
+    elsif genre == "nonfiction"
+      @fiction_books = BestsellingBooksByGenre::Book.scrape_nonfiction
       @nonfiction_books.each.with_index(1) do |book, i|
         puts "#{i}. #{book.title} by #{book.author}"
       end
@@ -18,9 +24,9 @@ class BestsellingBooksByGenre::CLI
   end
 
   def get_details
-    if @@genre == "fiction"
+    if genre == "fiction"
       book_array = @fiction_books
-    elsif @@genre == "nonfiction"
+    elsif genre == "nonfiction"
       book_array = @nonfiction_books
     end
     puts "Please enter the number of the book you'd like to learn more about (or type exit):"
