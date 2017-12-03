@@ -1,5 +1,7 @@
 class BestsellingBooksByGenre::CLI
   def call
+    genre
+    separate_genre_arrays
     list_books
     get_details
   end
