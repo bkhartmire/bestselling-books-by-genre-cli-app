@@ -39,4 +39,5 @@ class BestsellingBooksByGenre::CLI
       get_details
     end
   end
+  
 end

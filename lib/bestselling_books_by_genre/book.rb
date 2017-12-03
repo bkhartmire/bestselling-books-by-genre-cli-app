@@ -4,22 +4,25 @@ class BestsellingBooksByGenre::Book
   attr_accessor :genre, :title, :author, :summary, :link_to_buy
 
   def self.scrape_fiction
-    @@fiction_books = []
+    doc = Nokogiri::HTML(open("https://www.nytimes.com/books/best-sellers/"))
+    book = self.new
+    book.title = doc.search("section.subcategory .book-body h3.title")[0].text.strip
+    book.author = doc.search("section.subcategory .book-body p.author")[0].text.gsub("by ", "").strip
+    book.summary = doc.search("section.subcategory .book-body p.description")[0].text.strip
+    #Fix this code later:
+    #book.link_to_buy = doc.css("section.subcategory footer.book-footer a").first.attr("href")[0].value
+    book
   end
 
   def self.scrape_nonfiction
-    @@nonfiction_books = []
-  end
-
-  def self.scrape_nytimes
     doc = Nokogiri::HTML(open("https://www.nytimes.com/books/best-sellers/"))
     book = self.new
-    book.title = doc.search(".book-body h3.title").text.strip
-    book.author = doc.search(".book-body p.author").text.gsub("by ", "").strip
-    book.summary = doc.search(".book-body p.description").text.strip
+    book.title = doc.search("section.subcategory .book-body h3.title")[2].text.strip
+    book.author = doc.search("section.subcategory .book-body p.author")[2].text.gsub("by ", "").strip
+    book.summary = doc.search("section.subcategory .book-body p.description")[2].text.strip
     #Fix this code later:
-    #book.link_to_buy = doc.css("footer.book-footer a").first.attr("href").value
+    #book.link_to_buy = doc.css("section.subcategory footer.book-footer a").first.attr("href").value
     book
-
   end
+
 end
