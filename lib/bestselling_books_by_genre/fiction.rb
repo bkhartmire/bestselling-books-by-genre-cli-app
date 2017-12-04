@@ -1,29 +1,38 @@
 require 'pry'
 
 class BestsellingBooksByGenre::Fiction
-  attr_accessor :genre, :title, :author, :summary, :link_to_buy
+  attr_accessor :title, :author, :summary, :link_to_buy
 
-  def self.scraper
-    BestsellingBooksByGenre::Scraper.new
+  def self.scrape_fiction
+    doc = Nokogiri::HTML(open("https://www.nytimes.com/books/best-sellers/"))
+    doc.css("section.subcategory")[0]
   end
 
   def self.fiction_bestsellers
     @fiction_books = []
-    scraper.scrape_fiction.each do |book|
+    scrape_fiction.each do |book|
+      book = self.new
       @fiction_books << book
     end
     @fiction_books
   end
 
-  def self.scrape_fiction
-    doc = scraper.scrape_nonfiction
-    book = self.new
-    book.title = doc.search(".book-body h3.title").text.strip
-    book.author = doc.search(".book-body p.author").text.gsub("by ", "").strip
-    book.summary = doc.search(".book-body p.description").text.strip
-    #Fix this code later:
-    #book.link_to_buy = doc.css("section.subcategory footer.book-footer a").first.attr("href")[0].value
-    book
+  def title
+    @title = self.class.scrape_fiction.search(".book-body h3.title").text.strip
   end
+
+  def author
+    @author = self.class.scrape_fiction.search(".book-body p.author").text.gsub("by ", "").strip
+  end
+
+  def summary
+    @summary = self.class.scrape_fiction.search(".book-body p.description").text.strip
+  end
+
+  #Fix this code later:
+  #def link_to_buy
+    #@link_to_buy = self.class.scrape_fiction.search("footer.book-footer a").first.attr("href")[0].value
+  #end
+
 
 end

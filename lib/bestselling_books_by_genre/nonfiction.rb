@@ -1,5 +1,10 @@
+require 'pry'
+
 class BestsellingBooksByGenre::Nonfiction
-  attr_accessor :genre, :title, :author, :summary, :link_to_buy
+  attr_accessor :title, :author, :summary, :link_to_buy
+
+  def initialize
+  end
 
   def self.scraper
     BestsellingBooksByGenre::Scraper.new

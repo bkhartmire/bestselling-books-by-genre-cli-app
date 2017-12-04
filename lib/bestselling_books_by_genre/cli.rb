@@ -1,3 +1,5 @@
+require 'pry'
+
 class BestsellingBooksByGenre::CLI
   def call
     list_books
