@@ -1,6 +1,5 @@
 class BestsellingBooksByGenre::CLI
   def call
-    genre
     list_books
     get_details
   end
@@ -22,7 +21,7 @@ class BestsellingBooksByGenre::CLI
     puts "Please enter the number of the book you'd like to learn more about (or type exit):"
     input = gets.strip
     if input.to_i.between?(1,5)
-      book = genre[input.to_i - 1]
+      book = @books[input.to_i - 1]
       puts "#{book.summary}"
       #fix later
       #puts "To purchase this book on Amazon, visit: #{book.link_to_buy}"
