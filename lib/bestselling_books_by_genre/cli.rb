@@ -8,9 +8,9 @@ class BestsellingBooksByGenre::CLI
     puts "Would you like to view the NY Times top 5 bestselling fiction or nonfiction books?"
     genre = gets.strip
     if genre == "fiction"
-      @books = BestsellingBooksByGenre::Book.fiction_bestsellers
+      @books = BestsellingBooksByGenre::Fiction.fiction_bestsellers
     elsif genre == "nonfiction"
-      @books = BestsellingBooksByGenre::Book.nonfiction_bestsellers
+      @books = BestsellingBooksByGenre::Nonfiction.nonfiction_bestsellers
     end
     @books.each.with_index(1) do |book, i|
       puts "#{i}. #{book.title} by #{book.author}"

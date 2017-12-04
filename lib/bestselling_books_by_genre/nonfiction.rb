@@ -1,18 +1,16 @@
-require 'pry'
-
-class BestsellingBooksByGenre::Fiction
+class BestsellingBooksByGenre::Nonfiction
   attr_accessor :genre, :title, :author, :summary, :link_to_buy
 
-  def self.fiction_bestsellers
-    @fiction_books = []
-    BestsellingBooksByGenre::Scraper.scrape_fiction.each do |book|
-      @fiction_books << book
+  def self.nonfiction_bestsellers
+    @nonfiction_books = []
+    BestsellingBooksByGenre::Scraper.scrape_nonfiction.each do |book|
+      @nonfiction_books << book
     end
-    @fiction_books
+    @nonfiction_books
   end
 
-  def self.scrape_fiction
-    doc = BestsellingBooksByGenre::Scraper.scrape_fiction
+  def self.scrape_nonfiction
+    doc = BestsellingBooksByGenre::Scraper.scrape_nonfiction
     book = self.new
     book.title = doc.search(".book-body h3.title").text.strip
     book.author = doc.search(".book-body p.author").text.gsub("by ", "").strip
@@ -21,6 +19,4 @@ class BestsellingBooksByGenre::Fiction
       #book.link_to_buy = doc.css("section.subcategory footer.book-footer a").first.attr("href").value
     book
   end
-
-
 end
