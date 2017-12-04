@@ -1,16 +1,20 @@
 class BestsellingBooksByGenre::Nonfiction
   attr_accessor :genre, :title, :author, :summary, :link_to_buy
 
+  def self.scraper
+    BestsellingBooksByGenre::Scraper.new
+  end
+
   def self.nonfiction_bestsellers
     @nonfiction_books = []
-    BestsellingBooksByGenre::Scraper.scrape_nonfiction.each do |book|
+    scraper.scrape_nonfiction.each do |book|
       @nonfiction_books << book
     end
     @nonfiction_books
   end
 
   def self.scrape_nonfiction
-    doc = BestsellingBooksByGenre::Scraper.scrape_nonfiction
+    doc = scraper.scrape_nonfiction
     book = self.new
     book.title = doc.search(".book-body h3.title").text.strip
     book.author = doc.search(".book-body p.author").text.gsub("by ", "").strip
