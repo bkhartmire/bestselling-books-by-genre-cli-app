@@ -3,18 +3,22 @@ require 'pry'
 class BestsellingBooksByGenre::Fiction
   attr_accessor :title, :author, :summary, :link_to_buy
 
+  @@all = []
+
+  def self.all
+    @@all
+  end
+
   def self.scrape_fiction
     doc = Nokogiri::HTML(open("https://www.nytimes.com/books/best-sellers/"))
     doc.css("section.subcategory")[0]
   end
 
   def self.fiction_bestsellers
-    @fiction_books = []
     scrape_fiction.each do |book|
       book = self.new
-      @fiction_books << book
+      @@all << book
     end
-    @fiction_books
   end
 
   def title
