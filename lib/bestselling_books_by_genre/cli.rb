@@ -29,6 +29,7 @@ class BestsellingBooksByGenre::CLI
       puts "#{book.summary}"
       #fix later
       puts "To purchase this book on Amazon, visit: #{book.link_to_buy}"
+      get_details
     elsif input == "exit"
       puts "Goodbye!"
     else

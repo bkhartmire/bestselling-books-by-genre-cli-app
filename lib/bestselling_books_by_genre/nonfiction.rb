@@ -21,12 +21,7 @@ class BestsellingBooksByGenre::Nonfiction
       book.title = article.search("h3.title").text.strip
       book.author = article.search("p.author").text.gsub("by ", "").strip
       book.summary = article.search("p.description").text.strip
+      #book.link_to_buy = article.css("footer.book-footer a").first.attr("href")
     end
   end
-
-
-  #Fix this code later:
-  #def link_to_buy
-  #  @link_to_buy = self.class.scrape_nonfiction.search("footer.book-footer a").first.attr("href").value
-  #end
 end
