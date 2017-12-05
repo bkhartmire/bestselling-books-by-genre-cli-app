@@ -34,7 +34,7 @@ class BestsellingBooksByGenre::Nonfiction
   end
 
   #Fix this code later:
-  #def link_to_buy
-    #@link_to_buy = self.class.scrape_nonfiction.search("footer.book-footer a").first.attr("href").value
-  #end
+  def link_to_buy
+    @link_to_buy = self.class.scrape_nonfiction.search("footer.book-footer a").first.attr("href").value
+  end
 end

@@ -28,7 +28,7 @@ class BestsellingBooksByGenre::CLI
       book = @books[input.to_i - 1]
       puts "#{book.summary}"
       #fix later
-      #puts "To purchase this book on Amazon, visit: #{book.link_to_buy}"
+      puts "To purchase this book on Amazon, visit: #{book.link_to_buy}"
     elsif input == "exit"
       puts "Goodbye!"
     else
