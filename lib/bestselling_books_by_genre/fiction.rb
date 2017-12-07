@@ -21,7 +21,6 @@ class BestsellingBooksByGenre::Fiction
       book.title = article.search("h3.title").text.strip
       book.author = article.search("p.author").text.gsub("by ", "").strip
       book.summary = article.search("p.description").text.strip
-      #book.link_to_buy = article.search("a").first.attr("href")
     end
   end
 end

@@ -15,6 +15,9 @@ class BestsellingBooksByGenre::CLI
     elsif genre == "nonfiction"
       BestsellingBooksByGenre::Nonfiction.nonfiction_bestsellers
       @books = BestsellingBooksByGenre::Nonfiction.all
+    else
+      puts "Sorry, invalid input. Please try again."
+      return list_books
     end
     @books.each.with_index(1) do |book, i|
       puts "#{i}. #{book.title} by #{book.author}"
@@ -27,8 +30,6 @@ class BestsellingBooksByGenre::CLI
     if input.to_i.between?(1,5)
       book = @books[input.to_i - 1]
       puts "#{book.summary}"
-      #fix later
-      puts "To purchase this book on Amazon, visit: #{book.link_to_buy}"
       get_details
     elsif input == "exit"
       puts "Goodbye!"
