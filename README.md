@@ -1,8 +1,6 @@
 # BestsellingBooksByGenre
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/bestselling_books_by_genre`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem application scrapes data from the NY Times Bestsellers list based on user input.
 
 ## Installation
 
@@ -22,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Run bin/bestselling_books and the user will be prompted to input a book genre (fiction/nonfiction). Enter input accordingly and the program will present a list of that genre's current top five bestselling book titles along with their author names. The user will then be prompted to either exit or input the number of the book they would like more information about.
 
 ## Development
 
