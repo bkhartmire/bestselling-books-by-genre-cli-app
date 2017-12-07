@@ -1,7 +1,7 @@
 require 'pry'
 
 class BestsellingBooksByGenre::Nonfiction
-  attr_accessor :title, :author, :summary, :link_to_buy
+  attr_accessor :title, :author, :summary
 
   @@all = []
 
@@ -9,13 +9,8 @@ class BestsellingBooksByGenre::Nonfiction
     @@all
   end
 
-  def self.scrape_nonfiction
-    doc = Nokogiri::HTML(open("https://www.nytimes.com/books/best-sellers/"))
-    doc.css("section.subcategory")[2].search("article.book")
-  end
-
   def self.nonfiction_bestsellers
-    scrape_nonfiction.each do |article|
+    BestsellingBooksByGenre::Scraper.scrape_nonfiction.each do |article|
       book = self.new
       @@all << book
       book.title = article.search("h3.title").text.strip
