@@ -19,7 +19,7 @@ class BestsellingBooksByGenre::CLI
       BestsellingBooksByGenre::Scraper.fiction_bestsellers
       @books = BestsellingBooksByGenre::Fiction.all[0..number - 1]
     elsif genre == "nonfiction"
-      BestsellingBooksByGenre::Nonfiction.nonfiction_bestsellers
+      BestsellingBooksByGenre::Scraper.nonfiction_bestsellers
       @books = BestsellingBooksByGenre::Nonfiction.all[0..number - 1]
     else
       puts "Sorry, invalid input. Please try again."
