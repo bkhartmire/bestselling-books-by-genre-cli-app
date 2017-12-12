@@ -1,20 +1,26 @@
-require 'pry'
-
 class BestsellingBooksByGenre::CLI
   def call
     list_books
     get_details
   end
 
+
   def list_books
-    puts "Would you like to view the NY Times top 5 bestselling fiction or nonfiction books?"
+    puts "Would you like to view the NY Times bestselling fiction or nonfiction books?"
     genre = gets.strip
+    puts "How many bestselling #{genre} books would you like to see? Please input 1-5:"
+    number = gets.to_i
+    until number.between?(1, 5)
+      puts "Sorry, your input is invalid."
+      puts "How many bestselling #{genre} books would you like to see? Please input 1-5:"
+      number = gets.to_i
+    end
     if genre == "fiction"
-      BestsellingBooksByGenre::Fiction.fiction_bestsellers
-      @books = BestsellingBooksByGenre::Fiction.all
+      BestsellingBooksByGenre::Scraper.fiction_bestsellers
+      @books = BestsellingBooksByGenre::Fiction.all[0..number - 1]
     elsif genre == "nonfiction"
       BestsellingBooksByGenre::Nonfiction.nonfiction_bestsellers
-      @books = BestsellingBooksByGenre::Nonfiction.all
+      @books = BestsellingBooksByGenre::Nonfiction.all[0..number - 1]
     else
       puts "Sorry, invalid input. Please try again."
       return list_books
