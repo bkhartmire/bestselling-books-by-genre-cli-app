@@ -1,14 +1,7 @@
 class BestsellingBooksByGenre::Nonfiction
-  attr_accessor :title, :author, :summary
+  include BestsellingBooksByGenre::Book
 
   @@all = []
-
-  def initialize(title, author, summary)
-    @title = title
-    @author = author
-    @summary = summary
-    @@all << self
-  end
 
   def self.all
     @@all
