@@ -1,4 +1,4 @@
-class BestsellingBooksByGenre::Nonfiction
+module BestsellingBooksByGenre::Book
   attr_accessor :title, :author, :summary
 
   def initialize(title, author, summary)
